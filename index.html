@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article Review System</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Article Review System</h1>
+    <button class="add-article-btn" onclick="showAddArticleModal()">Add Article</button>
+  </header>
+
+  <div class="filter-bar">
+    <input type="text" class="search-input" id="search-input" placeholder="Search articles..." oninput="filterArticles()">
+    <select class="sort-select" id="sort-select" onchange="filterArticles()">
+      <option value="newest">Newest First</option>
+      <option value="highest">Highest Rated</option>
+    </select>
+  </div>
+
+  <div id="article-list"></div>
+
+  <!-- Add Article Modal -->
+  <div id="add-article-modal" class="modal">
+    <div class="modal-content">
+      <h2>Add New Article</h2>
+      <form id="add-article-form" onsubmit="event.preventDefault(); submitArticle();">
+        <div class="form-group">
+          <label for="article-title-input">Title *</label>
+          <input type="text" id="article-title-input" required>
+        </div>
+        <div class="form-group">
+          <label for="article-url-input">URL (optional)</label>
+          <input type="url" id="article-url-input">
+        </div>
+        <div class="form-group">
+          <label for="article-description-input">Description *</label>
+          <textarea id="article-description-input" required></textarea>
+        </div>
+        <div class="modal-buttons">
+          <button type="button" class="cancel-btn" onclick="hideAddArticleModal()">Cancel</button>
+          <button type="submit" class="submit-btn">Add Article</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="storage.js"></script>
+  <script src="app.js"></script>
+  <script>
+    let articles = getArticles();
+
+    function filterArticles() {
+      const filterText = document.getElementById('search-input').value;
+      const sortBy = document.getElementById('sort-select').value;
+      renderArticleList(articles, filterText, sortBy);
+    }
+
+    // Initial render
+    renderArticleList(articles);
+  </script>
+</body>
+</html>
