@@ -266,4 +266,3 @@ If you have questions or need help:
 **Built with ❤️ using vanilla web technologies**
 
 *Last updated: April 15, 2026*</content>
-<parameter name="filePath">d:\ITMO\Courses\2nd Semester\WAD\Yussef-Vibe-coding\README.md
